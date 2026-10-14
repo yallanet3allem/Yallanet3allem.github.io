@@ -1476,5 +1476,24 @@ document.addEventListener('toggle',function(e){var t=e.target;if(t&&t.classList&
   document.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')onDown(e);},true);
 })();
 </script>
+<script id="open-booking-direct">
+(function(){
+  function openBookingForm(){
+    try{document.querySelectorAll('.ov.show').forEach(function(o){o.classList.remove('show')})}catch(e){}
+    var c=document.getElementById('bookingContainerMain'),b=document.getElementById('bookingToggleBtn');
+    if(!c)return;
+    c.style.display='block';c.style.scrollMarginTop='70px';
+    if(b)b.innerHTML='إخفاء النموذج ▲';
+    setTimeout(function(){c.scrollIntoView({behavior:'smooth',block:'start'})},30);
+  }
+  window.openBookingForm=openBookingForm;
+  window.goBooking=openBookingForm;
+  document.addEventListener('click',function(e){
+    var a=e.target&&e.target.closest?e.target.closest('a[href="#booking"]'):null;
+    if(!a)return;
+    e.preventDefault();openBookingForm();
+  },true);
+})();
+</script>
 </body>
 </html>
